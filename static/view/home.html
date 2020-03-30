@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Raleway+Dots" rel="stylesheet" type="text/css"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/social.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
+</style>
+<body class="w3-theme-l5">
+
+<!-- Navbar -->
+<div class="w3-top">
+ <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
+  <a href="/follow" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Discover new friends"><i class="fa fa-user"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <!-- <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
+      <a href="#" class="w3-bar-item w3-button">Hillary Clinton posted on your wall</a>
+      <a href="#" class="w3-bar-item w3-button">Hillary likes your post</a>
+    </div>
+  </div> -->
+  <div class="w3-dropdown-hover w3-hide-small">
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+      <a href="/cancel" class="w3-bar-item w3-button">Cancel Account: {{.Username}}</a>
+      <a href="/login" class="w3-bar-item w3-button">login</a>
+      <a href="/register" class="w3-bar-item w3-button">signup</a>
+    </div>
+  </div>
+  <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+    <img src="images/trump.jpg" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+  </a> -->
+ </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+</div>
+
+<!-- Page Container -->
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+  <!-- The Grid -->
+  <div class="w3-row">
+    <!-- Left Column -->
+    <div class="w3-col m3">
+      <!-- Profile -->
+      <div class="w3-card w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">My Profile</h4>
+         <p class="w3-center"><img src="images/trump.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Politician, Bussinessman</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> New York, United States</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> June 14, 1946</p>
+        </div>
+      </div>
+      <br>
+
+      <!-- Accordion -->
+      <div class="w3-card w3-round">
+        <div class="w3-white">
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Followees</button>
+          <div id="Demo1" class="w3-hide w3-container">
+            <div id="following" style="float:none; width:50%">
+                <div style="float:left; width:80px"><b>Followee:</b></div><br>
+                {{range $key, $value := .Followee}}
+                <div class="w3-card w3-round w3-white w3-hide-small">
+                    <div class="w3-container">
+                        <p>{{$key}}</p>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+          </div>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Followers</button>
+          <div id="Demo2" class="w3-hide w3-container">
+            <div id="follower" style="float:left">
+                <div style="float:left; width:60px"><b>Follower:</b></div><br>
+                {{range $key, $value := .Follower}}
+                <div class="w3-card w3-round w3-white w3-hide-small">
+                    <div class="w3-container">
+                        <p>{{$key}}</p>
+                    </div>
+                </div>
+                {{end}}
+              </div>
+          </div>
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <div id="Demo3" class="w3-hide w3-container">
+         <div class="w3-row-padding">
+         <br>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+           <div class="w3-half">
+             <img src="images/trump.jpg" style="width:100%" class="w3-margin-bottom">
+           </div>
+         </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <!-- Interests -->
+      <div class="w3-card w3-round w3-white w3-hide-small">
+        <div class="w3-container">
+          <p>Interests</p>
+          <p>
+            <span class="w3-tag w3-small w3-theme-d5">News</span>
+            <span class="w3-tag w3-small w3-theme-d4">China</span>
+            <span class="w3-tag w3-small w3-theme-d3">Labels</span>
+            <span class="w3-tag w3-small w3-theme-d2">Games</span>
+            <span class="w3-tag w3-small w3-theme-d1">Friends</span>
+            <span class="w3-tag w3-small w3-theme">Games</span>
+            <span class="w3-tag w3-small w3-theme-l1">Friends</span>
+            <span class="w3-tag w3-small w3-theme-l2">Food</span>
+            <span class="w3-tag w3-small w3-theme-l3">Design</span>
+            <span class="w3-tag w3-small w3-theme-l4">Art</span>
+            <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+          </p>
+        </div>
+      </div>
+      <br>
+
+      <!-- Alert Box -->
+      <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+        <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
+          <i class="fa fa-remove"></i>
+        </span>
+        <p><strong>Hey!</strong></p>
+        <p>People are looking at your profile. Find out who.</p>
+      </div>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Middle Column -->
+    <div class="w3-col m7">
+
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card w3-round w3-white">
+            <div class="w3-container w3-padding">
+              <h6 class="w3-opacity">Share something with your friends!</h6>
+              <!-- <p contenteditable="true" class="w3-border w3-padding">......</p> -->
+              <div style="float:right; color:green; text-align:center; width:110%;">
+                <form name="post_form" method="post" action="/home" onSubmit="return InputCheckPost(this)" autocomplete="off">
+                    <input type="text" name="postcontent" style="width:80%; height:100px"><br>
+                    <p><p></p><button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>post</button></p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="images/trump.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity">1 min</span>
+        <h4>Messages</h4><br>
+        <hr class="w3-clear">
+        <div id="messages">
+            {{range .Tweets}}
+            <div class="w3-card w3-round w3-white w3-hide-small">
+                <div class="w3-container">
+                    <p><font size="4">{{.Content}}</font></p>
+                    <p><font size="2">{{.Username}} posted at </font><font size="1">{{.StringTimeStamp}}</font></p>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+                </div>
+            </div>
+            {{end}}
+        </div>
+      </div>
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="images/trump.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity">16 min</span>
+        <h4>My posts</h4><br>
+        <hr class="w3-clear">
+        <div id="usermessages">
+            {{range .UserTweets}}
+            <div class="w3-card w3-round w3-white w3-hide-small">
+                <div class="w3-container">
+                    <p><font size="4">{{.Content}}</font></p>
+                    <p><font size="2">You posted at </font><font size="1">{{.StringTimeStamp}}</font></p>
+                    <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button>
+                    <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+                </div>
+            </div>
+            {{end}}
+        </div>
+      </div>
+
+
+    <!-- End Middle Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-col m2">
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Upcoming Events:</p>
+          <img src="images/fine.jpg" alt="Forest" style="width:100%;">
+          <p><strong>Be president</strong></p>
+          <p>Friday 15:00</p>
+          <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-center">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="images/cancel.jpeg" alt="Avatar" style="width:50%"><br>
+          <span>Hillary Clinton</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
+        <p>ADS</p>
+      </div>
+      <br>
+
+      <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
+        <img src="images/trump2.jpg" style="width:100%">
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+
+  <!-- End Grid -->
+  </div>
+
+<!-- End Page Container -->
+</div>
+<br>
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-d3 w3-padding-16">
+    <section>
+        <ul id="services">
+          <li>
+            <div class="facebook">
+              <a href="https://facebook.com/colorlib/">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>Facebook</span>
+          </li>
+          <li>
+            <div class="twitter">
+              <a href="https://twitter.com/colorlib/">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>Twitter</span>
+          </li>
+          <li>
+            <div class="youtube">
+              <a href="https://www.youtube.com/c/Colorlib">
+                <i class="fa fa-youtube" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>YouTube</span>
+          </li>
+          <li>
+            <div class="linkedin">
+              <a href="https://www.linkedin.com/company/colorlib">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>LinkedIn</span>
+          </li>
+          <li>
+            <div class="instagram">
+              <a href="https://www.linkedin.com/company/colorlib">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>Instagram</span>
+          </li>
+          <li>
+            <div class="github">
+              <a href="https://github.com/puikinsh/">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+            </div>
+            <span>Github</span>
+          </li>
+        </ul>
+      </section>
+</footer>
+
+
+<script>
+// Accordion
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+    x.previousElementSibling.className += " w3-theme-d1";
+  } else {
+    x.className = x.className.replace("w3-show", "");
+    x.previousElementSibling.className =
+    x.previousElementSibling.className.replace(" w3-theme-d1", "");
+  }
+}
+
+// Used to toggle the menu on smaller screens when clicking on the menu button
+function openNav() {
+  var x = document.getElementById("navDemo");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+<script language="Javascript">
+    function InputCheckPost(post_form) {
+      if (post_form.postcontent.value == "") {
+          alert("Write something to post!");
+          post_form.postcontent.focus();
+          return (false);
+      }
+    }
+</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+
+<script src="js/nouislider.min.js"></script>
+<script src="js/moment-with-locales.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+<script src="js/main1.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -4,9 +4,9 @@
 ## Longtao Lve
 
 # Structrue of project
-***server/main.go*** server
-***server/main_test.go*** test for server
-***static/view*** front end file
+1.  ***server/main.go*** server
+2.  ***server/main_test.go*** test for server
+3.  ***static/view*** front end file
 
 # Instructions
 1.  Install APIs we used:   
